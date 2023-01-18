@@ -34,8 +34,11 @@ body {
 .navbar-brand .navbar-item:first-child {
   align-self: center;
   padding: 0;
-  font-size: calc(22 / var(--rem-base) * 1rem);
   flex-wrap: wrap;
+}
+
+.navbar-brand .navbar-item.title {
+  font-size: calc(22 / var(--rem-base) * 1rem);
   line-height: 1;
 }
 
