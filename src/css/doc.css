@@ -228,6 +228,8 @@
 
 .doc table.tableblock {
   font-size: calc(15 / var(--rem-base) * 1rem);
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
 .doc .tablecontainer,
@@ -250,7 +252,6 @@
   padding: 0.5rem;
 }
 
-.doc table.tableblock,
 .doc table.tableblock > * > tr > * {
   border: 0 solid var(--table-border-color);
 }
@@ -311,8 +312,30 @@
   background: var(--table-stripe-background);
 }
 
+.doc table.tableblock > thead {
+  background: var(--table-header-background);
+  color: var(--table-header-color);
+}
+
+.doc table.tableblock > thead > tr > *:first-child{
+  border-top-left-radius: 0.5em;
+}
+
+.doc table.tableblock > thead > tr > *:last-child{
+  border-top-right-radius: 0.5em;
+}
+
 .doc table.tableblock > tfoot {
   background: var(--table-footer-background);
+  color: var(--table-footer-color);
+}
+
+.doc table.tableblock > tfoot > tr > *:first-child{
+  border-bottom-left-radius: 0.5em;
+}
+
+.doc table.tableblock > tfoot > tr > *:last-child{
+  border-bottom-right-radius: 0.5em;
 }
 
 .doc .halign-left {
@@ -640,12 +663,18 @@
   margin-left: -1.25rem;
 }
 
-.doc ul.checklist i.fa-check-square-o {
-  background-image: url(../img/octicons-16.svg#view-tasklist);
+.doc ul.checklist i.fa-check-square-o::before {
+  content: url(../img/tasklist.svg);
+  width: inherit;
+  position: relative;
+  top: 5px;
 }
 
-.doc ul.checklist i.fa-square-o {
-  background-image: url(../img/octicons-16.svg#view-tasklist-unchecked);
+.doc ul.checklist i.fa-square-o::before {
+  content: url(../img/tasklist-uncheck.svg);
+  width: inherit;
+  position: relative;
+  top: 5px;
 }
 
 .doc .dlist .dlist,

@@ -93,7 +93,7 @@
   --abstract-border-color: var(--panel-border-color);
   --admonition-background: var(--panel-background);
   --admonition-label-font-weight: var(--body-font-weight-bold);
-  --caption-font-color: var(--color-gray-70);
+  --caption-font-color: var(--secondary);
   --caption-font-style: italic;
   --caption-font-weight: var(--body-font-weight-bold);
   --code-background: var(--panel-background);
@@ -110,9 +110,12 @@
   --quote-font-color: var(--color-gray-70);
   --quote-attribution-font-color: var(--color-gray-40);
   --sidebar-background: var(--color-smoke-90);
-  --table-border-color: var(--panel-border-color);
+  --table-border-color: var(--secondary);
   --table-stripe-background: var(--panel-background);
-  --table-footer-background: linear-gradient(to bottom, var(--color-smoke-70) 0%, var(--color-white) 100%);
+  --table-header-background: var(--secondary);
+  --table-header-color: var(--color-smoke-10);
+  --table-footer-background: linear-gradient(to bottom, var(--primary) 0%, var(--secondary) 100%);
+  --table-footer-color: var(--color-smoke-10);
   /* toc */
   --toc-font-color: var(--nav-muted-color);
   --toc-heading-font-color: var(--doc-font-color);
