@@ -34,9 +34,9 @@
   --body-background: var(--color-white);
   --panel-background: var(--color-smoke-30);
   --panel-border-color: var(--color-smoke-90);
-  --scrollbar-track-color: var(--color-smoke-30);
-  --scrollbar-thumb-color: var(--color-gray-10);
-  --scrollbar_hover-thumb-color: var(--color-gray-30);
+  --scrollbar-track-color: var(--body-background);
+  --scrollbar-thumb-color: var(--secondary);
+  --scrollbar_hover-thumb-color: #5750a3;
   /* navbar */
   --navbar-background: var(--primary);
   --navbar-font-color: var(--color-white);
@@ -103,7 +103,7 @@
   --kbd-background: var(--panel-background);
   --kbd-border-color: var(--color-gray-10);
   --pre-background: var(--panel-background);
-  --pre-border-color: var(--panel-border-color);
+  --pre-border-color: var(--secondary);
   --pre-annotation-font-color: var(--color-gray-50);
   --quote-background: var(--panel-background);
   --quote-border-color: var(--secondary);
