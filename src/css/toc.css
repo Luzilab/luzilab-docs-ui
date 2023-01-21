@@ -82,6 +82,7 @@
 .sidebar.toc .toc-menu a {
   display: block;
   outline: none;
+  transition: 0.2s;
 }
 
 .toc .toc-menu a:hover {
@@ -91,6 +92,7 @@
 .toc .toc-menu a.is-active {
   border-left-color: var(--link-font-color);
   color: var(--doc-font-color);
+  transition: 0.2s;
 }
 
 .sidebar.toc .toc-menu a:focus {

@@ -289,6 +289,7 @@ body {
   .navbar-end > .navbar-item,
   .navbar-end .navbar-link {
     color: var(--navbar-font-color);
+    transition: 0.2s;
   }
 
   .navbar-end .navbar-item .icon {
@@ -304,6 +305,7 @@ body {
   .navbar-end .navbar-item.has-dropdown:hover .navbar-link {
     background: var(--navbar_hover-background);
     color: var(--navbar-font-color);
+    transition: 0.2s;
   }
 
   .navbar-end .navbar-link::after {

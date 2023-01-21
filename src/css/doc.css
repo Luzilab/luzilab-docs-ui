@@ -6,6 +6,7 @@
   margin: var(--doc-margin);
   max-width: var(--doc-max-width);
   padding: 0 1rem 4rem;
+  height: calc(100vh - var(--navbar-height) - var(--toolbar-height));
 }
 
 @media screen and (min-width: 1024px) {
@@ -85,9 +86,11 @@
   width: 1.75em;
   margin-left: -1.5em;
   visibility: hidden;
+  opacity: 0;
   font-size: 0.8em;
   font-weight: normal;
   padding-top: 0.05em;
+  transition: all ease-in-out 0.2s;
 }
 
 .doc h1 .anchor::before,
@@ -108,6 +111,8 @@
 .doc h5:hover .anchor,
 .doc h6:hover .anchor {
   visibility: visible;
+  opacity: 1;
+  transition: opacity ease-in-out 0.2s;
 }
 
 .doc p,

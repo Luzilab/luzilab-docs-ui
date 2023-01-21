@@ -10,9 +10,31 @@
   navToggle.addEventListener('click', showNav)
   navContainer.addEventListener('click', trapEvent)
 
+  var explorePanel = navContainer.querySelector('[data-panel=explore]')
+
+  if (explorePanel) {
+    var menu = explorePanel.querySelector('.components');
+    if (explorePanel.classList.contains('is-active')) {
+      menu.style.maxHeight = menu.scrollHeight + "px";
+    }
+    var exploreCtx = explorePanel.querySelector('.context')
+    if (exploreCtx) {
+      exploreCtx.addEventListener('click', function () {
+        // NOTE logic assumes there are only two panels
+        find(nav, '[data-panel]').forEach(function (panel) {
+          panel.classList.toggle('is-active')
+        })
+        if (menu.style.maxHeight) {
+          menu.style.maxHeight = null;
+        } else {
+          menu.style.maxHeight = menu.scrollHeight + "px";
+        }
+      })
+    }
+  }
+
   var menuPanel = navContainer.querySelector('[data-panel=menu]')
   if (!menuPanel) return
-  var explorePanel = navContainer.querySelector('[data-panel=explore]')
 
   var currentPageItem = menuPanel.querySelector('.is-current-page')
   var originalPageItem = currentPageItem
@@ -25,6 +47,10 @@
 
   find(menuPanel, '.nav-item-toggle').forEach(function (btn) {
     var li = btn.parentElement
+    var panel = btn.nextElementSibling.nextElementSibling;
+    if (li.classList.contains('is-active')) {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
     btn.addEventListener('click', toggleActive.bind(li))
     var navItemSpan = findNextElement(btn, '.nav-text')
     if (navItemSpan) {
@@ -32,15 +58,6 @@
       navItemSpan.addEventListener('click', toggleActive.bind(li))
     }
   })
-
-  if (explorePanel) {
-    explorePanel.querySelector('.context').addEventListener('click', function () {
-      // NOTE logic assumes there are only two panels
-      find(nav, '[data-panel]').forEach(function (panel) {
-        panel.classList.toggle('is-active')
-      })
-    })
-  }
 
   // NOTE prevent text from being selected by double click
   menuPanel.addEventListener('mousedown', function (e) {
@@ -103,12 +120,16 @@
   }
 
   function toggleActive () {
+    var panel = this.firstElementChild.nextElementSibling.nextElementSibling;
     if (this.classList.toggle('is-active')) {
       var padding = parseFloat(window.getComputedStyle(this).marginTop)
       var rect = this.getBoundingClientRect()
       var menuPanelRect = menuPanel.getBoundingClientRect()
       var overflowY = (rect.bottom - menuPanelRect.top - menuPanelRect.height + padding).toFixed()
       if (overflowY > 0) menuPanel.scrollTop += Math.min((rect.top - menuPanelRect.top - padding).toFixed(), overflowY)
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }else {
+      panel.style.maxHeight = null;
     }
   }
 
