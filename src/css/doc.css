@@ -6,6 +6,8 @@
   margin: var(--doc-margin);
   max-width: var(--doc-max-width);
   padding: 0 1rem 4rem;
+  height: 100%;
+  min-height: calc(100vh - var(--navbar-height) - var(--toolbar-height));
 }
 
 @media screen and (min-width: 1024px) {
@@ -82,12 +84,14 @@
 .doc h6 .anchor {
   position: absolute;
   text-decoration: none;
-  width: 1.75ex;
-  margin-left: -1.5ex;
+  width: 1.75em;
+  margin-left: -1.5em;
   visibility: hidden;
+  opacity: 0;
   font-size: 0.8em;
   font-weight: normal;
   padding-top: 0.05em;
+  transition: all ease-in-out 0.2s;
 }
 
 .doc h1 .anchor::before,
@@ -96,7 +100,9 @@
 .doc h4 .anchor::before,
 .doc h5 .anchor::before,
 .doc h6 .anchor::before {
-  content: "\00a7";
+  content: "\ff03";
+  font-weight: bold;
+  font-size: 1.5em;
 }
 
 .doc h1:hover .anchor,
@@ -106,6 +112,8 @@
 .doc h5:hover .anchor,
 .doc h6:hover .anchor {
   visibility: visible;
+  opacity: 1;
+  transition: opacity ease-in-out 0.2s;
 }
 
 .doc p,
@@ -130,8 +138,15 @@
 }
 
 .doc i.fa {
+  display: inline-block;
+  background: no-repeat 50%/1em 1em;
+  filter: invert(14.5%);
+  filter: var(--doc-icon-filter);
+  -webkit-hyphens: none;
   hyphens: none;
   font-style: normal;
+  height: 1em;
+  width: fit-content;
 }
 
 .doc p code,
@@ -219,6 +234,8 @@
 
 .doc table.tableblock {
   font-size: calc(15 / var(--rem-base) * 1rem);
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
 .doc .tablecontainer,
@@ -241,7 +258,6 @@
   padding: 0.5rem;
 }
 
-.doc table.tableblock,
 .doc table.tableblock > * > tr > * {
   border: 0 solid var(--table-border-color);
 }
@@ -302,8 +318,30 @@
   background: var(--table-stripe-background);
 }
 
+.doc table.tableblock > thead {
+  background: var(--table-header-background);
+  color: var(--table-header-color);
+}
+
+.doc table.tableblock > thead > tr > *:first-child{
+  border-top-left-radius: 0.5em;
+}
+
+.doc table.tableblock > thead > tr > *:last-child{
+  border-top-right-radius: 0.5em;
+}
+
 .doc table.tableblock > tfoot {
   background: var(--table-footer-background);
+  color: var(--table-footer-color);
+}
+
+.doc table.tableblock > tfoot > tr > *:first-child{
+  border-bottom-left-radius: 0.5em;
+}
+
+.doc table.tableblock > tfoot > tr > *:last-child{
+  border-bottom-right-radius: 0.5em;
 }
 
 .doc .halign-left {
@@ -332,6 +370,7 @@
 
 .doc .admonitionblock {
   margin: 1.4rem 0 0;
+  border-radius: 0.3em;
 }
 
 .doc .admonitionblock p,
@@ -359,20 +398,24 @@
   background: var(--admonition-background);
   width: 100%;
   word-wrap: anywhere;
+  border-radius: 0.3em;
 }
 
 .doc .admonitionblock .icon {
   position: absolute;
   top: 0;
   left: 0;
+  font-size: 0.83333rem;
   font-size: calc(15 / var(--rem-base) * 1rem);
-  padding: 0 0.5rem;
-  height: 1.25rem;
   line-height: 1;
-  font-weight: var(--admonition-label-font-weight);
-  text-transform: uppercase;
-  border-radius: 0.45rem;
   transform: translate(-0.5rem, -50%);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0,rgba(0, 0, 0, 0.2)) no-repeat 0 / 2.075em 100%;
+  border-radius: 0.3em;
+  padding: 0.3em 0.075em;
+}
+
+.doc .admonitionblock.caution {
+  border: 1px solid var(--caution-color);
 }
 
 .doc .admonitionblock.caution .icon {
@@ -380,9 +423,25 @@
   color: var(--caution-on-color);
 }
 
+.doc .admonitionblock.caution td.icon i {
+  background-image: url(../img/octicons-16.svg#view-flame);
+}
+
+.doc .admonitionblock.important {
+  border: 1px solid var(--important-color);
+}
+
 .doc .admonitionblock.important .icon {
   background-color: var(--important-color);
   color: var(--important-on-color);
+}
+
+.doc .admonitionblock.important td.icon i {
+  background-image: url(../img/octicons-16.svg#view-stop);
+}
+
+.doc .admonitionblock.note {
+  border: 1px solid var(--note-color);
 }
 
 .doc .admonitionblock.note .icon {
@@ -390,9 +449,25 @@
   color: var(--note-on-color);
 }
 
+.doc .admonitionblock.note td.icon i {
+  background-image: url(../img/octicons-16.svg#view-info);
+}
+
 .doc .admonitionblock.tip .icon {
   background-color: var(--tip-color);
   color: var(--tip-on-color);
+}
+
+.doc .admonitionblock.tip td.icon i {
+  background-image: url(../img/octicons-16.svg#view-light-bulb);
+}
+
+.doc .admonitionblock.tip {
+  border: 1px solid var(--tip-color);
+}
+
+.doc .admonitionblock.warning {
+  border: 1px solid var(--warning-color);
 }
 
 .doc .admonitionblock.warning .icon {
@@ -400,14 +475,29 @@
   color: var(--warning-on-color);
 }
 
+.doc .admonitionblock.warning td.icon i {
+  background-image: url(../img/octicons-16.svg#view-alert);
+}
+
 .doc .admonitionblock .icon i {
   display: inline-flex;
   align-items: center;
-  height: 100%;
+  width: auto;
+  background-position-x: .5em;
+  filter: invert(100%);
+  padding-left: 2em;
+  vertical-align: initial;
 }
 
 .doc .admonitionblock .icon i::after {
   content: attr(title);
+  text-transform: uppercase;
+  filter: invert(100%);
+  font-weight: 500;
+  font-weight: var(--admonition-label-font-weight);
+  font-style: normal;
+  padding: 0 .5em;
+  margin: -.05em;
 }
 
 .doc .imageblock,
@@ -580,11 +670,17 @@
 }
 
 .doc ul.checklist i.fa-check-square-o::before {
-  content: "\2713";
+  content: url(../img/tasklist.svg);
+  width: inherit;
+  position: relative;
+  top: 5px;
 }
 
 .doc ul.checklist i.fa-square-o::before {
-  content: "\274f";
+  content: url(../img/tasklist-uncheck.svg);
+  width: inherit;
+  position: relative;
+  top: 5px;
 }
 
 .doc .dlist .dlist,
@@ -750,6 +846,7 @@
   display: block;
   overflow-x: auto;
   padding: 0.875em;
+  border-radius: 0.5em;
 }
 
 .doc .listingblock > .content {

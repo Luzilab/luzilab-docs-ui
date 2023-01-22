@@ -34,8 +34,11 @@ body {
 .navbar-brand .navbar-item:first-child {
   align-self: center;
   padding: 0;
-  font-size: calc(22 / var(--rem-base) * 1rem);
   flex-wrap: wrap;
+}
+
+.navbar-brand .navbar-item.title {
+  font-size: calc(22 / var(--rem-base) * 1rem);
   line-height: 1;
 }
 
@@ -53,15 +56,24 @@ body {
   justify-content: flex-end;
 }
 
+#search-field {
+  width: 100%;
+}
+
 #search-input {
-  color: #333;
+  color: var(--navbar-background);
   font-family: inherit;
   font-size: 0.95rem;
-  width: 150px;
+  width: 9rem;
   border: 1px solid #dbdbdb;
-  border-radius: 0.1em;
+  padding: 0.25em 1em !important;
+  border-radius: 2em;
   line-height: 1.5;
-  padding: 0 0.25em;
+  transition: all ease-in 0.3s;
+}
+
+#search-input::placeholder {
+  color: var(--navbar_hover-background);
 }
 
 #search-input:disabled {
@@ -77,6 +89,12 @@ body {
 
 #search-input:focus {
   outline: none;
+  width: 100%;
+  transition: all ease-in 0.3s;
+}
+
+.search-result-dropdown-menu {
+  top: calc(100% + 4em) !important;
 }
 
 .navbar-burger {
@@ -128,7 +146,8 @@ body {
 .navbar-item,
 .navbar-link {
   color: var(--navbar-menu-font-color);
-  display: block;
+  display: flex;
+  column-gap: 1em;
   line-height: var(--doc-line-height);
   padding: 0.5rem 1rem;
 }
@@ -141,6 +160,7 @@ body {
   width: 1.25rem;
   height: 1.25rem;
   display: block;
+  color: var(--navbar-background);
 }
 
 .navbar-item .icon img,
@@ -192,12 +212,6 @@ body {
   .navbar-brand .navbar-item.search {
     padding-left: 0;
     padding-right: 0;
-  }
-}
-
-@media screen and (min-width: 769px) {
-  #search-input {
-    width: 200px;
   }
 }
 
@@ -275,6 +289,15 @@ body {
   .navbar-end > .navbar-item,
   .navbar-end .navbar-link {
     color: var(--navbar-font-color);
+    transition: 0.2s;
+  }
+
+  .navbar-end .navbar-item .icon {
+    color: var(--navbar-font-color);
+  }
+
+  .navbar-end .navbar-item .texte {
+    display: none;
   }
 
   .navbar-end > a.navbar-item:hover,
@@ -282,10 +305,20 @@ body {
   .navbar-end .navbar-item.has-dropdown:hover .navbar-link {
     background: var(--navbar_hover-background);
     color: var(--navbar-font-color);
+    transition: 0.2s;
   }
 
   .navbar-end .navbar-link::after {
     border-color: currentColor;
+  }
+
+  #search-input:focus {
+    width: 15rem;
+    transition: all ease-in 0.3s;
+  }
+
+  .search-result-dropdown-menu {
+    top: calc(100% - 0.4em) !important;
   }
 
   .navbar-dropdown {

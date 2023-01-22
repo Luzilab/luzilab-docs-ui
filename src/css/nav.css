@@ -115,18 +115,17 @@ html.is-clipped--nav {
 }
 
 /* adds some breathing room below a nested list */
-.nav-item-toggle ~ .nav-list {
+.nav-item > .nav-item-toggle ~ .nav-list {
   padding-bottom: 0.125rem;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.2s ease-out;
 }
 
 /* matches list without a title */
 .nav-item[data-depth="0"] > .nav-list:first-child {
   display: block;
   margin: 0;
-}
-
-.nav-item:not(.is-active) > .nav-list {
-  display: none;
 }
 
 .nav-item-toggle {
@@ -205,16 +204,18 @@ html.is-clipped--nav {
   margin: 0;
   overflow-y: scroll;
   overscroll-behavior: none;
-  max-height: 100%;
-  display: block;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.2s ease-out;
 }
 
 .nav-panel-explore:not(.is-active) .components {
-  display: none;
+  padding: 0;
 }
 
-.nav-panel-explore .component {
-  display: block;
+body.status-404 .nav-panel-explore .components {
+  box-shadow: none;
+  background: var(--nav-background);
 }
 
 .nav-panel-explore .component + .component {
