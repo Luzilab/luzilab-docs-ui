@@ -42,7 +42,7 @@
     "js-yaml": "~4.1",
     "merge-stream": "~2.0",
     "postcss-calc": "~8.2",
-    "postcss-custom-properties": "~12.1",
+    "postcss-custom-properties": "~13.1",
     "postcss-import": "~15.1",
     "postcss-url": "~10.1",
     "prettier-eslint": "~15.0",
