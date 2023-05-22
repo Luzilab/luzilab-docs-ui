@@ -15,7 +15,7 @@
   ],
   "devDependencies": {
     "@asciidoctor/core": "~2.2",
-    "@fontsource/roboto": "~4.5",
+    "@fontsource/roboto": "~5.0",
     "@fontsource/roboto-mono": "~4.5",
     "autoprefixer": "~10.4",
     "browser-pack-flat": "~3.5",
